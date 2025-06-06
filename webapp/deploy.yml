@@ -1,0 +1,10 @@
+- name: "Deploy Configuration"
+  hosts: prod
+  tasks:
+    - name: Create an apache container"
+      community.docker.docker_container:
+        name: webapp
+        image: httpd
+        ports:
+          - "80:80"
+
