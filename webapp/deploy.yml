@@ -1,8 +1,11 @@
 - name: "Deploy Configuration"
   hosts: prod
+  pre_tasks:
+    - name: Install docker python
+      pip: name-docker-py
   tasks:
-    - name: Create an apache container"
-      community.docker.docker_container:
+    - name: Create an apache container
+      docker_container:
         name: webapp
         image: httpd
         ports:
