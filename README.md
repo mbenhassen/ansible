@@ -28,13 +28,19 @@ prod:
 Utiliser un module ping :
 
 ```bash
-ansible -i hosts.yml -m ping
+ansible -i inventaire all -m ping
+```
+
+Utiliser un module copy (copier un fichier sur machine distance) :
+
+```bash
+ansible -i inventaire all -m copy -a "dest=/home/admin/toto.txt content='Hello World'"
 ```
 
 Utiliser un module setup :
 
 ```bash
-ansible -i hosts.yml -m setup
+ansible -i inventaire all -m setup
 ```
 
 
@@ -49,10 +55,16 @@ cd ansible
 
 ## Utilisation
 
+Validation syntaxique d'un playbook :
+
+```bash
+ansible-playbook  -i inventaire playbook.yml 
+```
+
 Exécutez un playbook :
 
 ```bash
-ansible-playbook playbook.yml -i inventaire
+ansible-playbook  -i inventaire playbook.yml 
 ```
 
 ## Structure du projet
