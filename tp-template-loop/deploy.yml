@@ -1,0 +1,21 @@
+- name: "Deploy Configuration"
+  hosts: prod
+  become: true
+  vars:
+    ansible_sudo_pass: admin
+  pre_tasks: 
+    - name: Install prerequis
+      yum: 
+        name: '{{ item }}'
+        state: present
+      loop:
+        - git
+        - wget
+      when: ansible_distribution == "CentOS"
+    - name: "Generate index.html"
+      template:
+        src: ./templates/index.html.j2
+        dest: "{{playbook_dir}}/{{inventory_hostname}}.html"
+  tasks:
+  
+
